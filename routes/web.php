@@ -34,6 +34,8 @@ Route::get('/contact', function () {
 // RUTE TERLINDUNGI (Memerlukan Login)
 Route::middleware(['auth', 'verified'])->group(function () {
 
+    Route::get('/mahasiswa/print-ktm/{id}', [MahasiswaController::class, 'printKtm'])->name('mahasiswa.print_ktm');
+
     // 1. Rute Khusus Export & Import (Tambahkan ini!)
     Route::get('admin/mahasiswa/export', [MahasiswaController::class, 'export'])->name('admin.mahasiswa.export');
     Route::post('admin/mahasiswa/import', [MahasiswaController::class, 'import'])->name('admin.mahasiswa.import');

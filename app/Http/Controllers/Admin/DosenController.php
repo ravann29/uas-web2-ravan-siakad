@@ -16,13 +16,13 @@ class DosenController extends Controller
     {
         try {
             // Mengambil semua data Dosen
-            $dosens = Dosen::all(); 
+            $dosen = Dosen::all(); 
         } catch (\Exception $e) {
             // Fail safe: kembalikan Collection kosong jika database/tabel tidak ditemukan
-            $dosens = collect([]);
+            $dosen = collect([]);
         }
 
-        return view('admin.dosen.index', compact('dosens'));
+        return view('admin.dosen.index', compact('dosen'));
     }
 
     // CREATE
@@ -38,9 +38,9 @@ class DosenController extends Controller
     { 
         // Validasi data
         $validatedData = $request->validate([
-            'nidn' => ['required', 'string', 'max:10', 'min:5', Rule::unique('dosens', 'nidn')],
+            'nidn' => ['required', 'string', 'max:10', 'min:5', Rule::unique('dosen', 'nidn')],
             'nama_dosen' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('dosens', 'email')],
+            'email' => ['required', 'email', 'max:255', Rule::unique('dosen', 'email')],
             'gelar' => ['nullable', 'string', 'max:100'],
         ]);
 
@@ -69,9 +69,9 @@ class DosenController extends Controller
 
         // Validasi data. Gunakan Rule::unique untuk mengabaikan NIDN dan Email dosen itu sendiri
         $validatedData = $request->validate([
-            'nidn' => ['required', 'string', 'max:10', 'min:5', Rule::unique('dosens', 'nidn')->ignore($dosen->id)],
+            'nidn' => ['required', 'string', 'max:10', 'min:5', Rule::unique('dosen', 'nidn')->ignore($dosen->id)],
             'nama_dosen' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', Rule::unique('dosens', 'email')->ignore($dosen->id)],
+            'email' => ['required', 'email', 'max:255', Rule::unique('dosen', 'email')->ignore($dosen->id)],
             'gelar' => ['nullable', 'string', 'max:100'],
         ]);
         

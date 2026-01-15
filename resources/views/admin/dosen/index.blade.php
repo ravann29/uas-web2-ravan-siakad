@@ -58,7 +58,7 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-500">Total Dosen Terdaftar</p>
-                        <p class="text-2xl font-bold text-gray-900">{{ $dosens->count() }}</p>
+                        <p class="text-2xl font-bold text-gray-900">{{ $dosen->count() }}</p>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-500">Dosen Aktif</p>
                         {{-- Anggap semua dosen aktif, atau ganti dengan logika filtering Anda --}}
-                        <p class="text-2xl font-bold text-gray-900">{{ $dosens->count() }}</p> 
+                        <p class="text-2xl font-bold text-gray-900">{{ $dosen->count() }}</p> 
                     </div>
                 </div>
             </div>
@@ -88,14 +88,14 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-500">Total NIDN Terdaftar</p>
-                        <p class="text-2xl font-bold text-gray-900">{{ $dosens->count() }}</p> 
+                        <p class="text-2xl font-bold text-gray-900">{{ $dosen->count() }}</p> 
                     </div>
                 </div>
             </div>
         </div>
         
         {{-- ALERT DATA KOSONG (Styling Matkul) --}}
-        @if ($dosens->isEmpty())
+        @if ($dosen->isEmpty())
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
                 <div class="flex flex-col items-center">
                     <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
@@ -148,7 +148,7 @@
 
                         {{-- BODY TABEL --}}
                         <tbody class="divide-y divide-gray-200">
-                            @foreach ($dosens as $index => $dosen)
+                            @foreach ($dosen as $index => $dosen)
                                 <tr class="hover:bg-gray-50 transition-colors duration-150">
                                     <td class="px-6 py-4 whitespace-nowrap text-center text-gray-500">
                                         {{ $index + 1 }}
@@ -201,9 +201,9 @@
             </div>
             
             {{-- PAGINATION (Jika menggunakan paginate() di controller) --}}
-            @if (method_exists($dosens, 'links'))
+            @if (method_exists($dosen, 'links'))
                 <div class="mt-6">
-                    {{ $dosens->links('pagination::tailwind') }}
+                    {{ $dosen->links('pagination::tailwind') }}
                 </div>
             @endif
         @endif

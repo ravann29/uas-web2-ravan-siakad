@@ -48,12 +48,12 @@ class JadwalController extends Controller
     public function create()
     {
         $matkuls = MataKuliah::all();
-        $dosens = Dosen::all();
+        $dosen = Dosen::all();
         $ruangans = Ruang::all(); 
         $shifts = Shift::all();
         $tahunAjars = TahunAjar::all(); 
         
-        return view('admin.jadwal.create', compact('matkuls', 'dosens', 'ruangans', 'shifts', 'tahunAjars'));
+        return view('admin.jadwal.create', compact('matkuls', 'dosen', 'ruangans', 'shifts', 'tahunAjars'));
     }
 
     /**
@@ -63,7 +63,7 @@ class JadwalController extends Controller
     {
         $validated = $request->validate([
             'mata_kuliah_id' => 'required|exists:mata_kuliah,id',
-            'dosen_id' => 'required|exists:dosens,id',
+            'dosen_id' => 'required|exists:dosen,id',
             'ruang_id' => 'required|exists:ruang,id',
             'shift_id' => 'required|exists:shifts,id',
             'hari' => 'required|in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu',
@@ -96,12 +96,12 @@ class JadwalController extends Controller
         $jadwal->load(['mataKuliah', 'dosen', 'ruangan', 'shift', 'tahunAjar']); 
 
         $matkuls = MataKuliah::all();
-        $dosens = Dosen::all();
+        $dosen = Dosen::all();
         $ruangans = Ruang::all();
         $shifts = Shift::all();
         $tahunAjars = TahunAjar::all();
         
-        return view('admin.jadwal.edit', compact('jadwal', 'matkuls', 'dosens', 'ruangans', 'shifts', 'tahunAjars'));
+        return view('admin.jadwal.edit', compact('jadwal', 'matkuls', 'dosen', 'ruangans', 'shifts', 'tahunAjars'));
     }
 
     /**
@@ -111,9 +111,9 @@ class JadwalController extends Controller
     {
         $validated = $request->validate([
             'mata_kuliah_id' => 'required|exists:mata_kuliah,id',
-            'dosen_id' => 'required|exists:dosens,id',
+            'dosen_id' => 'required|exists:dosen,id',
             'ruang_id' => 'required|exists:ruang,id',
-            'shift_id' => 'required|exists:shifts,id',
+            'shift_id' => 'required|exists:shift,id',
             'hari' => 'required|in:Senin,Selasa,Rabu,Kamis,Jumat,Sabtu',
             'tahun_ajar_id' => 'required|exists:tahun_ajar,id',
             'waktu_mulai' => 'nullable|date_format:H:i',

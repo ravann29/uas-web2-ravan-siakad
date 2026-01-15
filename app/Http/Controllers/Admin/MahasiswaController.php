@@ -16,6 +16,26 @@ class MahasiswaController extends Controller
     /**
      * Menampilkan daftar mahasiswa dengan fitur search
      */
+
+    public function printKtm($id)
+{
+    // Cari user berdasarkan ID
+    $mhs = \App\Models\User::findOrFail($id);
+
+    // DEBUG: Pastikan foto ada. Jika ini null, maka gambar tidak akan muncul.
+    // dd($mhs->photo); 
+
+    $pdf = \PDF::loadView('mahasiswa.ktm-layout', compact('mhs'))
+                ->setPaper([0, 0, 243.78, 153.07], 'portrait')
+                ->setOptions([
+                    'isHtml5ParserEnabled' => true,
+                    'isRemoteEnabled' => true, // WAJIB TRUE agar dompdf bisa baca file lokal
+                    'chroot' => public_path(), // Memberi akses folder public ke dompdf
+                ]);
+    
+    return $pdf->stream('KTM_'.$mhs->name.'.pdf');
+}
+
     public function index(Request $request)
     {
         $query = User::where('role', 'mahasiswa')->with('programStudi');

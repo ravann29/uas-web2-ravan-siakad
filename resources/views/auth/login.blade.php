@@ -2,7 +2,6 @@
     <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
         <div class="max-w-md w-full">
 
-        
             {{-- HEADER SECTION --}}
             <div class="mb-8 text-center">
                 <h1 class="text-2xl font-bold text-gray-900 mb-1">Selamat Datang</h1>
@@ -30,10 +29,10 @@
                 </div>
 
                 {{-- Form Body --}}
-                <form method="POST" action="{{ route('login') }}" class="p-6">
+                <form method="POST" action="{{ route('login') }}">
                     @csrf
 
-                    <div class="space-y-6">
+                    <div class="p-6 space-y-6">
                         
                         {{-- EMAIL --}}
                         <div>
@@ -92,30 +91,28 @@
                             </label>
                         </div>
 
-                    </div>
-
-                    {{-- FORM ACTIONS --}}
-                    <div class="mt-8 pt-6 border-t border-gray-200">
-                        <div class="flex items-center justify-between">
-                            @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" 
-                                   class="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-200">
-                                    Lupa password?
-                                </a>
-                            @endif
-                            
-                            <button type="submit" 
-                                    class="inline-flex items-center px-6 py-2.5 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400 transition-all duration-200"
-                                    style="background-color: #F39C12;">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
-                                </svg>
-                                {{ __('LOGIN') }}
-                            </button>
+                        {{-- FORM ACTIONS --}}
+                        <div class="pt-6 border-t border-gray-200">
+                            <div class="flex items-center justify-between">
+                                @if (Route::has('password.request'))
+                                    <a href="{{ route('password.request') }}" 
+                                       class="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors duration-200">
+                                        Lupa password?
+                                    </a>
+                                @endif
+                                
+                                <button type="submit" 
+                                        class="inline-flex items-center px-6 py-2.5 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400 transition-all duration-200"
+                                        style="background-color: #F39C12;">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                                    </svg>
+                                    {{ __('LOGIN') }}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </form>
-
             </div>
 
             {{-- REGISTER LINK --}}

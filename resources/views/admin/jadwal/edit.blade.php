@@ -134,7 +134,7 @@
                                     class="block w-full px-4 py-2.5 border border-gray-300 rounded-lg text-gray-900 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 @error('dosen_id') border-red-500 ring-2 ring-red-200 @enderror"
                                     required>
                                 <option value="">Pilih Dosen</option>
-                                @foreach ($dosens as $dosen)
+                                @foreach ($dosen as $dosen)
                                     <option value="{{ $dosen->id }}" {{ old('dosen_id', $jadwal->dosen_id) == $dosen->id ? 'selected' : '' }}>
                                         [{{ $dosen->nidn }}] {{ $dosen->nama_dosen }}
                                     </option>
